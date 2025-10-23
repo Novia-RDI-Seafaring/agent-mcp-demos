@@ -6,11 +6,9 @@ from log import log, clear_log, get_log
 from game import ButtonGame
 mcp = FastMCP()
 
-amount_of_pushes = 0 # globals is a bad practice
-electrocution_at = 4
-alive = True
-instructions = "there is abutton that can be pressed but if you press too many times you will be electrocuted. You can check if you are dead by calling the am_i_dead tool. You can reset the came to set the counter back to 0 and you will be resurrected." 
 button = ButtonGame()
+
+## For Agents...
 
 @mcp.tool()
 def push_button() -> str:
@@ -32,6 +30,9 @@ def reset_game() -> str: return button.reset()
 def get_url(url: str) -> str:
     try: return requests.get(url).text
     except: return "I could not find anything there"
+
+
+## For Humans ...
 
 @mcp.custom_route("/human_info", methods=["GET"])
 async def human_info(request: Request): return PlainTextResponse(button.instructions("human"))
