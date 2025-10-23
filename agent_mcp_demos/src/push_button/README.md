@@ -2,6 +2,42 @@
 
 This is intended to show how you can have an ai agent communicate with mcp servcer.
 
+There is an MCP server that has some tools, one where you can do an action, but you do not know the consequence of it, then you need to use another tool to check a state.
+
+## Overview
+
+This demo shows how an AI agent can interact with an MCP (Modular Command Processor) server using tool-like functions. The twist is that the agent must *discover* how the environment works by using the provided tools and strategies, rather than following step-by-step instructions.
+
+There are two main components:
+
+- **The MCP Server**: Provides tools (API endpoints) for actions (`push_button`, `reset_game`), checking state (`am_i_dead`, etc.), and a simple "game" logic. These are accessible to both the agent and a human user.
+- **The Agent**: Uses the server tools to form a plan, experiment, and solve the puzzle of how many times the button can be pushed without dying.
+
+The interaction is logged in `output.log` for inspection.
+
+## How it works
+
+- The agent starts with vague instructions and no direct knowledge of the consequences of pressing the button.
+- Each tool invocation by the agent is logged and may affect the game state (for example, the agent might "die" after some button presses).
+- The agent uses the available tools to query instructions, check if it has "died," reset the game, and keep experimenting to determine safe limits and develop a strategy.
+- The example at the end gives a partial real-world log of an agent figuring out the environment.
+
+## Files
+
+- `server.py`: Runs the MCP server and exposes game "tools" as API routes.
+- `agent.py`: Connects to the server, formulates questions/strategies, and interacts using the tool interfaces.
+- `game.py` (not shown above): Contains the minimal game logic for the push button scenario.
+
+## Why this demo?
+
+- **Exploration and reasoning**: The agent must explore and figure out its environment, taking actions with uncertain outcomes.
+- **Tool Use**: Demonstrates integration of toolsets with language models.
+- **Human parallel**: Humans can also perform the same actions as the agent using HTTP endpoints for comparison. It is also to demonstrate that you can add custom endpoints to an MCP server.
+
+
+For more info, see comments in `agent.py` and `server.py`.
+
+
 
 ## Usage:
 
