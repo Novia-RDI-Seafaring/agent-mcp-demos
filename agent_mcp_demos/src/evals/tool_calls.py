@@ -98,7 +98,7 @@ async def answer_question(question: str) -> str:
 
 
 
-recipe_dataset = Dataset["str", "str", Any](  
+explore_world_dataset = Dataset["str", "str", Any](  
     cases=[
 
         Case(
@@ -157,5 +157,5 @@ recipe_dataset = Dataset["str", "str", Any](
 )
 
 
-report = recipe_dataset.evaluate_sync(answer_question)
+report = explore_world_dataset.evaluate_sync(answer_question)
 print(report)
