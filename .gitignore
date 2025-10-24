@@ -6,6 +6,11 @@ dist/
 wheels/
 *.egg-info
 
+# external repos
+exteral_repos/
+agent_mcp_demos/external_repos/ag-ui
+external/
+
 # Virtual environments
 .venv
 .env

@@ -3,7 +3,7 @@ name = "agent-mcp-demos"
 version = "0.1.0"
 description = "Demo of agents using MCP tools"
 readme = "README.md"
-requires-python = ">=3.12"
+requires-python = ">=3.13"
 authors = [
     {name = "Christoffer Björkskog", email = "christoffer.bjorkskog@novia.fi"}
 ]
@@ -11,7 +11,9 @@ license = {text = "MIT"}
 keywords = ["mcp", "agent", "ai", "tools", "demo"]
 dependencies = [
     "fastmcp>=2.12.5",
-    "pydantic-ai>=1.3.0",
+    "pydantic>=2.12.3",
+    "pydantic-ai-examples>=1.3.0",
+    "pydantic-ai[examples]>=1.3.0",
     "pydantic-evals[logfire]>=1.3.0",
     "starlette>=0.48.0",
 ]
