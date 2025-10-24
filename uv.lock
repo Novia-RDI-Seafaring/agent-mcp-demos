@@ -24,6 +24,7 @@ dependencies = [
     { name = "pydantic-ai", extra = ["examples"] },
     { name = "pydantic-ai-examples" },
     { name = "pydantic-evals", extra = ["logfire"] },
+    { name = "python-dotenv" },
     { name = "starlette" },
 ]
 
@@ -34,6 +35,7 @@ requires-dist = [
     { name = "pydantic-ai", extras = ["examples"], specifier = ">=1.3.0" },
     { name = "pydantic-ai-examples", specifier = ">=1.3.0" },
     { name = "pydantic-evals", extras = ["logfire"], specifier = ">=1.3.0" },
+    { name = "python-dotenv", specifier = ">=1.1.1" },
     { name = "starlette", specifier = ">=0.48.0" },
 ]
 

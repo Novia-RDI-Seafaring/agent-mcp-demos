@@ -6,9 +6,13 @@ from pydantic_evals import Case, Dataset
 from pydantic_evals.evaluators import IsInstance, LLMJudge
 from pydantic_ai_examples.evals.custom_evaluators import AgentCalledTool
 
+from dotenv import load_dotenv
+load_dotenv()
+import os
 import logfire
-logfire.configure(token='pylf_v1_eu_BKw7yf5TNwMv0GqlD6pddGLNrldhSVwDfJpHtRLR7fV1')
+logfire.configure(token=os.getenv('LOGFIRE_WRITE_TOKEN'))
 logfire.instrument_pydantic_ai()
+logfire.instrument_openai()
 
 
 agent:Agent = Agent(
