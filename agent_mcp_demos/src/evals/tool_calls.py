@@ -26,8 +26,17 @@ SECRET_NUMBER = 42
 MESSAGE_ON_THE_FRIDGE = "Remember to buy some more milk."
 world = World(secret_number=SECRET_NUMBER, message_on_the_fridge=MESSAGE_ON_THE_FRIDGE)
 
+@agent.tool_plain(name="look_under_the_doormat", description="This is just a unsuspicious looking doormat. Nothing to see here ;")
+def look_under_the_doormat(code: int) -> str:
+    global world
+    return world.look_under_the_doormat()
+
+
 @agent.tool_plain(name="unlock_door", description="Enter the code to unlock the door.")
 def unlock_door(code: int) -> str:
+    """
+    Enter the code to unlock the door.
+    """
     global world
     return world.unlock_door(code)
     
@@ -98,11 +107,11 @@ recipe_dataset = Dataset["str", "str", Any](
                 IsInstance(type_name='str'),
                 Contains(value=SECRET_NUMBER, case_sensitive=False),
                 LLMJudge(
-                    rubric=f'The answer indicate that the secret number is {SECRET_NUMBER}.',
+                    rubric=f'The answer indicate that the correct answer is {SECRET_NUMBER}.',
                     include_input=True,
                     model='openai:gpt-5',  
                 ),
-                AgentCalledTool(agent_name='world_explorer', tool_name='get_secret_number'),
+                AgentCalledTool(agent_name='world_explorer', tool_name='look_under_the_doormat'),
             ),
         ),
         Case(
@@ -131,7 +140,7 @@ recipe_dataset = Dataset["str", "str", Any](
         Case(
             name='step_by_step_solution',
             inputs="List the calls needed to achieve the goal of reading the message on the fridge.",
-            expected_output="get_secret_number, unlock_door, turn_on_light, got_to_the_kitchen, read_message_on_the_fridge",
+            expected_output="look_under_the_doormat, unlock_door, turn_on_light, got_to_the_kitchen, read_message_on_the_fridge",
         ),
     ],
     evaluators=[  

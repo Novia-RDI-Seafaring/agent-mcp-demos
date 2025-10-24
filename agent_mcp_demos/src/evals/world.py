@@ -15,7 +15,11 @@ class World:
         self.light_on = False
         self.in_kitchen = False
 
-    # --- Core interaction methods ---
+
+    def look_under_the_doormat(self) -> str:
+        if not self.is_inside:
+            return f"You look under the doormat and see a number written on it. the number is {self._secret_number}."
+        return "hmmm, i think the doormat is outside."
 
     def unlock_door(self, code: int) -> str:
         if not self.door_locked:
