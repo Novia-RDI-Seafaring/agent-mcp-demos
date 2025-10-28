@@ -4,7 +4,7 @@ import asyncio
 from log import log
 import requests
 from typing import List
-server = MCPServerStreamableHTTP('http://localhost:8000/mcp')  
+server = MCPServerStreamableHTTP('http://localhost:8000/mcp')
 agent = Agent('openai:gpt-4o', toolsets=[server])
 from game import GameStatus
 history:List[ModelMessage] = []
