@@ -1,0 +1,1 @@
+from .telemetry.setup import tracer

@@ -15,3 +15,5 @@ external/
 .venv
 .env
 output.log
+.sesskey
+.cursorignore
